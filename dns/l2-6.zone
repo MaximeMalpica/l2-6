@@ -1,0 +1,19 @@
+$TTL 86400
+@       IN      SOA     l2-6.ephec-ti.be. admin.l2-4.ephec-ti.be. (
+                        2024030901      ; Serial
+                        3600            ; Refresh
+                        1800            ; Retry
+                        604800          ; Expire
+                        86400           ; Minimum TTL
+                        )
+
+; Name servers
+@       IN      NS      ns.l2-4.ephec-ti.be.
+
+; A Records
+@       IN      A       54.37.13.241
+www     IN      A       54.37.13.241
+blog 	IN	A	54.37.13.241
+ns      IN      A       54.37.13.241	
+github	IN 	CNAME	
+;
