@@ -1,0 +1,38 @@
+services:
+  web:
+    image: image-web
+    container_name: container-web
+    hostname: web
+    ports:
+      - 80:80
+    volumes:
+      - ./html:/var/www/html
+    networks:
+      - api
+
+  php:
+    image: image-php
+    container_name: container-php
+    hostname: php
+    volumes:
+      - ./html:/var/www/html
+    networks:
+      - api
+
+  mariadb:
+    image: mariadb
+    container_name: container-mariadb
+    hostname: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: mypass
+      MYSQL_DATABASE: woodytoys
+      MYSQL_USER: woodytoys
+      MYSQL_PASSWORD: woodytoys
+    volumes:
+      - ./db/sql:/docker-entrypoint-initdb.d
+      - ./db/cnf/my-resolve.cnf:/etc/mysql/conf.d/my-resolve.cnf
+    networks:
+      - api
+
+networks:
+  api: 
