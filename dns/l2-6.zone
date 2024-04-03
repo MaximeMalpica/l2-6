@@ -12,6 +12,7 @@ $TTL 86400
 @       IN      NS      ns.l2-6.ephec-ti.be.
 
 ; A Records
+_acme-challenge IN TXT  YE10ri0JeU93bUFEkB59lHue7Ax-HDb8Ax0U8kl8tOk
 @       IN      A       54.37.13.241
 www     IN      A       54.37.13.241
 blog 	IN	A	54.37.13.241

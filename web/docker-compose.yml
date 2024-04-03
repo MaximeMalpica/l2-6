@@ -5,8 +5,10 @@ services:
     hostname: web
     ports:
       - 80:80
+      - 443:443
     volumes:
       - ./html:/var/www/html
+      - ../certificate:/etc/letsencrypt/archive/www.l2-6.ephec-ti.be/
     networks:
       - api
 
@@ -14,6 +16,11 @@ services:
     image: image-php
     container_name: container-php
     hostname: php
+    environment:
+        PHP_USER: ${PHP_USER}
+        PHP_PASSWORD: ${PHP_PASSWORD}
+        PHP_HOST: ${MARIADB_HOST}
+        PHP_DATABASE: ${MARIADB_DATABASE}
     volumes:
       - ./html:/var/www/html
     networks:
@@ -24,10 +31,10 @@ services:
     container_name: container-mariadb
     hostname: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: mypass
-      MYSQL_DATABASE: woodytoys
-      MYSQL_USER: woodytoys
-      MYSQL_PASSWORD: woodytoys
+        MYSQL_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD} 
+        MYSQL_USER: ${MARIADB_USER}
+        MYSQL_PASSWORD: ${MARIADB_USER_PASSWORD}
+        MYSQL_DATABASE: ${MARIADB_DATABASE}
     volumes:
       - ./db/sql:/docker-entrypoint-initdb.d
       - ./db/cnf/my-resolve.cnf:/etc/mysql/conf.d/my-resolve.cnf

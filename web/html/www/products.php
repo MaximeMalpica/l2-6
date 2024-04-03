@@ -17,11 +17,10 @@
 <h1>Catalogue WoodyToys</h1>
 
 <?php
-$dbname = 'woodytoys';
-$dbuser = 'woodytoys';
-$dbpass = 'woodytoys';
-$dbhost = 'mariadb';
-;
+$dbname = getenv('PHP_DATABASE');
+$dbuser = getenv('PHP_USER');
+$dbpass = getenv('PHP_PASSWORD');
+$dbhost = getenv('PHP_HOST');
 $connect = mysqli_connect($dbhost, $dbuser, $dbpass) or die("Unable to connect to '$dbhost'");
 mysqli_select_db($connect,$dbname) or die("Could not open the database '$dbname'");
 $result = mysqli_query($connect,"SELECT id, name, price FROM products");
